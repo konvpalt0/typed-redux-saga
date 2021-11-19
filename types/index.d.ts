@@ -179,10 +179,16 @@ export function put<T>(
   channel: PuttableChannel<T>,
   action: T | END,
 ): SagaGenerator<T, ChannelPutEffect<T>>;
+ export function put<TReturnType>(
+    thunkAction: ThunkAction<TReturnType, TState, TExtraThunkArg, TBasicAction>,
+  ): SagaGenerator<TReturnType, PutEffect<TReturnType>>;
 
 export function putResolve<A extends Action>(
   action: A,
 ): SagaGenerator<A, PutEffect<A>>;
+export function putResolve<TReturnType>(
+    thunkAction: ThunkAction<TReturnType, TState, TExtraThunkArg, TBasicAction>,
+  ): SagaGenerator<TReturnType, PutEffect<TReturnType>>;
 
 export function call<Fn extends (...args: any[]) => any>(
   fn: Fn,
